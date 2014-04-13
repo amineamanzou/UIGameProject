@@ -7,6 +7,10 @@ Server/[Cc]onfig/database.php
 Server/app/tmp/*
 Server/app/[Cc]onfig/core.php
 Server/app/[Cc]onfig/database.php
+Server/app/Vendor/*
+Server/app/Plugin/*
+Server/vendors/*
+Server/plugins/*
 !empty
 
 # Client Side #
@@ -18,3 +22,7 @@ Server/app/[Cc]onfig/database.php
 
 nbproject
 /nbproject/private/
+
+# Dependencie Manager #
+#######################
+composer.lock
