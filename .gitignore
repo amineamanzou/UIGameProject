@@ -8,7 +8,13 @@ Server/app/tmp/*
 Server/app/[Cc]onfig/core.php
 Server/app/[Cc]onfig/database.php
 !empty
-/nbproject/private/
 
 # Client Side #
 ###############
+
+
+# IDE metadata #
+################
+
+nbproject
+/nbproject/private/
