@@ -1,0 +1,8 @@
+#mapCanvas {
+	background-image:url(../img/World_Map.jpg);
+	background-size: 100%;
+	position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
