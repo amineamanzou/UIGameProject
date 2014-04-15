@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # http://code.google.com/p/sequel-pro/
 #
-# Hôte: 127.0.0.1 (MySQL 5.5.33)
+# Hôte: 127.0.0.1 (MySQL 5.6.10)
 # Base de données: UIGameProject
-# Temps de génération: 2014-04-15 21:34:46 +0000
+# Temps de génération: 2014-04-14 09:10:29 +0000
 # ************************************************************
 
 
@@ -97,34 +97,6 @@ CREATE TABLE `mobs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-# Affichage de la table pos_territoires
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `pos_territoires`;
-
-CREATE TABLE `pos_territoires` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `x` double NOT NULL,
-  `y` double NOT NULL,
-  `larg` double NOT NULL,
-  `longu` double NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `pos_territoires` WRITE;
-/*!40000 ALTER TABLE `pos_territoires` DISABLE KEYS */;
-
-INSERT INTO `pos_territoires` (`id`, `x`, `y`, `larg`, `longu`)
-VALUES
-	(1,319,222,1306,653),
-	(6,257,236,1440,693),
-	(7,705,247,1440,693),
-	(8,1007,206,1440,693);
-
-/*!40000 ALTER TABLE `pos_territoires` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Affichage de la table territoires
