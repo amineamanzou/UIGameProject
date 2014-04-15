@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>UI Game Project</title>
         <link media="screen" href="./css/style.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="./library/buzz.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     </head>
@@ -13,6 +14,16 @@
         <canvas id="mapCanvas"></canvas>
 
         <script>
+
+          var mySound = new buzz.sound("./sound/MusicHalo.mp3");
+
+          mySound.play()
+              .fadeIn()
+              .loop()
+              .bind( "timeupdate", function() {
+                 var timer = buzz.toTimer( this.getTime() );
+                 document.getElementById( "timer" ).innerHTML = timer;
+              });
 
           window.onresize = resizeOk;
           function resizeOk() {
