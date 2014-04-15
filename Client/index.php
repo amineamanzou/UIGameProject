@@ -14,6 +14,11 @@
 
         <script>
 
+          window.onresize = resizeOk;
+          function resizeOk() {
+              location.assign(location.href);
+          } 
+
           var canvas = document.getElementById('mapCanvas');
           canvas.width = $(window).width();
           canvas.height = $(window).height();
