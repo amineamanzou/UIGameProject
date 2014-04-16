@@ -11,7 +11,17 @@ body {
   padding: 15px;
   margin: 0 auto;
   background-color: #eee;
+}
+
+.ombre {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+}
+
+.form-signin2 {
+  max-width: 500px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: white;
 }
 
 .form2 {
@@ -49,6 +59,10 @@ body {
 }
 
 .connexion {
-  margin-top:250px;
+  margin-top:315px;
+}
+
+.textForm {
+  margin-bottom: 10px;
 }
 

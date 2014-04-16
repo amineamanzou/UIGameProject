@@ -7,6 +7,7 @@
         <link media="screen" href="./css/style.css" type="text/css" rel="stylesheet" />
         <script type="text/javascript" src="./library/buzz.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="./css/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
 
 
         <link href="./css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,25 +45,45 @@
             <li><a href="#">Contact</a></li>
           </ul>
           <ul>
-            <li><a href="http://www.twitter.com/codrops" class="bt-icon icon-twitter">Twitter</a></li>
-            <li><a href="https://plus.google.com/101095823814290637419" class="bt-icon icon-gplus">Google+</a></li>
-            <li><a href="http://www.facebook.com/pages/Codrops/159107397912" class="bt-icon icon-facebook">Facebook</a></li>
-            <li><a href="https://github.com/codrops" class="bt-icon icon-github">icon-github</a></li>
+            <li><a href="http://www.twitter.com/" class="bt-icon icon-twitter">Twitter</a></li>
+            <li><a href="https://plus.google.com/" class="bt-icon icon-gplus">Google+</a></li>
+            <li><a href="http://www.facebook.com/pages/" class="bt-icon icon-facebook">Facebook</a></li>
+            <li><a href="https://github.com/" class="bt-icon icon-github">icon-github</a></li>
           </ul>
         </nav>
       </div>
 
-      <div class="connexion container">
-        <form class="form-signin" role="form">
-          <input type="email" class="form-control" placeholder="Votre login"  >
+      <div class="connexion">
+        <form class="form-signin ombre" role="form">
+          <input type="text" class="form-control" placeholder="Votre login"  >
           <input type="password" class="form-control" placeholder="Votre mot de passe" >
           <button class="btn btn-lg btn-danger btn-block" type="submit" onclick="begin(); return false;">Se connecter</button>
         </form>
 
-        <form class="form-signin form2" role="form">
-          <button class="btn btn-lg btn-warning btn-block" type="submit" onclick="begin(); return false;">S'inscrire</button>
+        <form class="form-signin form2 ombre" role="form">
+          <button class="btn btn-lg btn-warning btn-block" data-toggle="modal" data-target="#inscription" onclick="return false;">S'inscrire</button>
         </form>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="inscription">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+                  <div class="inscr">
+                    <form class="form-signin form-signin2" role="form">
+                      <input type="text" class="form-control textForm" placeholder="Choisir un login" >
+                      <input type="password" class="form-control" placeholder="Choisir un mot de passe" >
+                      <input type="password" class="form-control" placeholder="Repeter le mot de passe" >
+                      <input type="text" class="form-control textForm" placeholder="Saisir votre adresse mail" >
+                      <button class="btn btn-lg btn-warning btn-block" type="submit" onclick="begin(); return false;">S'inscrire</button>
+                    </form>
+                  </div>
+            </div>      
+          </div>
+        </div>
+      </div>
+
 
       <div id="game">
         <canvas id="mapCanvas"></canvas>
