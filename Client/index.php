@@ -8,9 +8,63 @@
         <script type="text/javascript" src="./library/buzz.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+
+        <link href="./css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/signin.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/icons.css" />
+        <link rel="stylesheet" type="text/css" href="css/style2.css" />
+        <script src="js/modernizr.custom.js"></script>
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("#game").hide();
+            $(".menu").hide();
+         });
+
+          function begin() {
+            $("#game").show();
+            $(".connexion").hide("slow");
+            $(".menu").show();
+          }
+        </script>
+
     </head>
     <body>
 
+      <div class="container menu">
+        <nav id="bt-menu" class="bt-menu">
+          <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+          <ul>
+            <li><a href="#">Profil</a></li>
+            <li><a href="#">Badges</a></li>
+            <li><a href="#">Classement</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <ul>
+            <li><a href="http://www.twitter.com/codrops" class="bt-icon icon-twitter">Twitter</a></li>
+            <li><a href="https://plus.google.com/101095823814290637419" class="bt-icon icon-gplus">Google+</a></li>
+            <li><a href="http://www.facebook.com/pages/Codrops/159107397912" class="bt-icon icon-facebook">Facebook</a></li>
+            <li><a href="https://github.com/codrops" class="bt-icon icon-github">icon-github</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="connexion container">
+        <form class="form-signin" role="form">
+          <input type="email" class="form-control" placeholder="Votre login"  >
+          <input type="password" class="form-control" placeholder="Votre mot de passe" >
+          <button class="btn btn-lg btn-danger btn-block" type="submit" onclick="begin(); return false;">Se connecter</button>
+        </form>
+
+        <form class="form-signin form2" role="form">
+          <button class="btn btn-lg btn-warning btn-block" type="submit" onclick="begin(); return false;">S'inscrire</button>
+        </form>
+      </div>
+
+      <div id="game">
         <canvas id="mapCanvas"></canvas>
 
         <script>
@@ -98,6 +152,11 @@
               echo "</script>";
           }
         ?>
+      </div>
 
     </body>
+
+    <script src="js/classie.js"></script>
+    <script src="js/borderMenu.js"></script>
+
 </html>
