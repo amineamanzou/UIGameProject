@@ -19,24 +19,8 @@
         <script src="js/modernizr.custom.js"></script>
 
         <script type="text/javascript">
-
-          var mySound = new buzz.sound("./sound/MusicHalo.mp3");
-
-          mySound.play()
-              .fadeIn()
-              .loop()
-              .bind( "timeupdate", function() {
-                 var timer = buzz.toTimer( this.getTime() );
-                 document.getElementById( "timer" ).innerHTML = timer;
-              });
-
           var music = true;
 
-          window.onresize = resizeOk;
-          function resizeOk() {
-              location.assign(location.href);
-          }
-          
           $(document).ready(function(){
             $("#game").hide();
             $(".menu").hide();
@@ -126,7 +110,23 @@
       <div id="game">
         <canvas id="mapCanvas"></canvas>
 
-        <script> 
+        <script>
+
+          var mySound = new buzz.sound("./sound/MusicHalo.mp3");
+
+          mySound.play()
+              .fadeIn()
+              .loop()
+              .bind( "timeupdate", function() {
+                 var timer = buzz.toTimer( this.getTime() );
+                 document.getElementById( "timer" ).innerHTML = timer;
+              });
+
+          window.onresize = resizeOk;
+          function resizeOk() {
+              location.assign(location.href);
+          } 
+
           var canvas = document.getElementById('mapCanvas');
           canvas.width = $(window).width();
           canvas.height = $(window).height();

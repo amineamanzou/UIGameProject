@@ -236,3 +236,14 @@
 .bt-menu ul li a:focus:before {
 	color: #1abc9c;
 }
+
+.bt-sound {
+	position: fixed;
+	top: 23px;
+	left: 95px;
+	z-index: 2000;
+	display: block;
+	cursor: pointer;
+}
+
+
