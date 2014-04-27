@@ -10,7 +10,9 @@ Server/app/[Cc]onfig/database.php
 Server/app/Vendor/*
 Server/app/Plugin/*
 Server/vendors/*
+Server/vendor/*
 Server/plugins/*
+Server/Plugin/*
 !empty
 
 # Client Side #
