@@ -1,10 +1,10 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
-            <?php if($this->Session->read('Auth.User.level') == 'admin'): ?>
+            <?php if($this->Session->read('Auth.User.type') == 'admin'): ?>
 		<?php 
                     echo $this->Html->image("logo.png", array(
                         'alt' => "Nespresso Backend",
-                        'url' => array('controller' => 'pages', 'action' => 'index'),
+                        'url' => array('controller' => 'users', 'action' => 'index'),
                         'class' => 'navbar-brand',
                         'style' => 'height: 50px;'
                     ));
@@ -13,7 +13,7 @@
                 <?php 
                     echo $this->Html->image("logo.png", array(
                         'alt' => "Nespresso Backend",
-                        'url' => array('controller' => 'statistics', 'action' => 'dashboard'),
+                        'url' => array('controller' => 'users', 'action' => 'index'),
                         'class' => 'navbar-brand',
                         'style' => 'height: 50px;'
                     ));
@@ -23,7 +23,7 @@
         <?php if($this->Session->read('Auth.User')): ?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-                        <?php if($this->Session->read('Auth.User.level') == 'admin'): ?>
+                        <?php if($this->Session->read('Auth.User.type') == 'admin'): ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu 1 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -48,4 +48,4 @@
                     </ul>
             </div><!-- /.navbar-collapse -->
         <?php endif; ?>
-</nav><!-- /.navbar navbar-default -->
+</div><!-- /.navbar navbar-default -->
