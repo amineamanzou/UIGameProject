@@ -32,6 +32,47 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
     
+    public $components = array(
+            'Session',
+            'RequestHandler',
+            'DebugKit.Toolbar',
+            'Auth'=>array(
+                'authError'=>'Accès Refusé !',
+                'flash'=> array(
+                    'element'=>'flash/error',
+                    'key' => 'auth',
+                    'params' => array()
+                ),
+                'authorize'=>array('Controller')
+            )
+    );
+    
     public $theme = "Cakestrap";
+    
+    /**
+     * Define CRUD page for the admin role
+     * @var array
+     */
+    public $adminSection = array(
+        'index', 'add', 'edit', 'delete'
+    );
+    
+    public function beforeFilter()
+    {   
+        // Nothing for the moment
+    }
+    
+    /**
+     * Define the access controle to the admin
+     * @param type $user
+     * @return boolean
+     */
+    public function isAuthorized($user) {
+        if(in_array($this->action, $this->adminSection)){
+            if($this->Auth->user('type') != 'admin')
+                return false;
+        }
+        return true;
+    }
     
 }
