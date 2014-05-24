@@ -1,7 +1,7 @@
 function Map(nom) {
 	 var mapJsonData = $.ajax({
-	  url: "./maps/" + nom + ".json",
-	  async: false
+		url: "./maps/" + nom + ".json",
+		async: false
 	 }).responseText;
 	
 	var mapData = JSON.parse(mapJsonData);
@@ -11,6 +11,8 @@ function Map(nom) {
 
 	// Liste des personnages présents sur le terrain.
 	this.personnages = new Array();
+
+	this.tours = new Array();
 }
 
 Map.prototype.getHauteur = function() {
@@ -33,9 +35,17 @@ Map.prototype.dessinerMap = function(context) {
 	for(var i = 0, l = this.personnages.length ; i < l ; i++) {
 		this.personnages[i].dessinerPersonnage(context);
 	}
+
+	for(var i = 0, l = this.tours.length ; i < l ; i++) {
+		this.tours[i].dessinerTower(context);
+	}
 }
 
 // Pour ajouter un personnage
 Map.prototype.addPersonnage = function(perso) {
 	this.personnages.push(perso);
+}
+
+Map.prototype.addTour = function(tour) {
+	this.tours.push(tour);
 }

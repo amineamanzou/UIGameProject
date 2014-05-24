@@ -3,6 +3,15 @@ var map = new Map("premiere");
 var joueur = new Personnage("personnage.png", 7, 14, DIRECTION.BAS);
 map.addPersonnage(joueur);
 
+//Placement des tours
+window.onclick = function() {
+	var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth);
+	var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
+
+	var tour = new Tower("test.png", x, y, DIRECTION.BAS);
+	map.addTour(tour);
+}
+
 window.onload = function() {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
