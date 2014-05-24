@@ -1,26 +1,26 @@
-function Personnage(url, x, y, direction) {
+function Monster(url, x, y, direction) {
 	this.x = x; // (en cases)
 	this.y = y; // (en cases)
 	this.direction = direction;
 	
 	// Chargement de l'image dans l'attribut image
 	this.image = new Image();
-	this.image.referenceDuPerso = this;
+	this.image.referenceDuMonstre = this;
 	this.image.onload = function() {
 		if(!this.complete) 
 			throw "Erreur chargement sprite - \"" + url + "\".";
 		
-		this.referenceDuPerso.largeur = this.width / 4;
-		this.referenceDuPerso.hauteur = this.height / 4;
+		this.referenceDuMonstre.largeur = this.width / 4;
+		this.referenceDuMonstre.hauteur = this.height / 4;
 	}
 
 	this.image.src = "sprites/" + url;
 	this.etatAnimation = -1;
 }
 
-Personnage.prototype.dessinerPersonnage = function(context) {
+Monster.prototype.dessinerMonstre = function(context) {
 	var frame = 0; // Numéro de l'image à prendre pour l'animation
-	var decalageX = 0, decalageY = 0; // Décalage à appliquer à la position du personnage
+	var decalageX = 0, decalageY = 0; // Décalage à appliquer à la position du Monster
 	if(this.etatAnimation >= DUREE_DEPLACEMENT) {
 		// Si le déplacement a atteint ou dépassé le temps nécessaire pour s'effectuer, on le termine
 		this.etatAnimation = -1;
@@ -55,17 +55,17 @@ Personnage.prototype.dessinerPersonnage = function(context) {
 	*/
 	
 		
-	// Ici se trouvera le code de dessin du personnage
+	// Ici se trouvera le code de dessin du Monster
 	context.drawImage(
 	this.image, 
 	this.largeur * frame, this.direction * this.hauteur, // Point d'origine du rectangle source à prendre dans notre image
-	this.largeur, this.hauteur, // Taille du rectangle source (c'est la taille du personnage)
-	(this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + decalageX, (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) + decalageY, // Point de destination (dépend de la taille du personnage)
-	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
+	this.largeur, this.hauteur, // Taille du rectangle source (c'est la taille du Monster)
+	(this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + decalageX, (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) + decalageY, // Point de destination (dépend de la taille du Monster)
+	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du Monster)
 	);
 }
 
-Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
+Monster.prototype.getCoordonneesAdjacentes = function(direction)  {
 	var coord = {'x' : this.x, 'y' : this.y};
 	switch(direction) {
 		case DIRECTION.BAS : 
@@ -84,13 +84,13 @@ Personnage.prototype.getCoordonneesAdjacentes = function(direction)  {
 	return coord;
 }
 	
-Personnage.prototype.deplacer = function(direction, map) {
+Monster.prototype.deplacer = function(direction, map) {
 	// On ne peut pas se déplacer si un mouvement est déjà en cours !
 	if(this.etatAnimation >= 0) {
 		return false;
 	}
 
-	// On change la direction du personnage
+	// On change la direction du Monster
 	this.direction = direction;
 		
 	// On vérifie que la case demandée est bien située dans la carte

@@ -10,7 +10,7 @@ function Map(nom) {
 	this.walkable = mapData.walkable;
 
 	// Liste des personnages présents sur le terrain.
-	this.personnages = new Array();
+	this.monstres = new Array();
 
 	this.tours = new Array();
 }
@@ -31,9 +31,9 @@ Map.prototype.dessinerMap = function(context) {
 		}
 	}
 	
-	// Dessin des personnages
-	for(var i = 0, l = this.personnages.length ; i < l ; i++) {
-		this.personnages[i].dessinerPersonnage(context);
+	// Dessin des monstres 
+	for(var i = 0, l = this.monstres.length ; i < l ; i++) {
+		this.monstres[i].dessinerMonstre(context);
 	}
 
 	for(var i = 0, l = this.tours.length ; i < l ; i++) {
@@ -41,9 +41,9 @@ Map.prototype.dessinerMap = function(context) {
 	}
 }
 
-// Pour ajouter un personnage
-Map.prototype.addPersonnage = function(perso) {
-	this.personnages.push(perso);
+// Pour ajouter un monstre
+Map.prototype.addMonstre = function(monstre) {
+	this.monstres.push(monstre);
 }
 
 Map.prototype.addTour = function(tour) {

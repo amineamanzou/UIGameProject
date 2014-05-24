@@ -13,6 +13,7 @@
 
   <!--[if lt IE 9]><script src="js/excanvas.compiled.js"></script><![endif]-->
 
+  <script type='text/javascript' src='./library/astar.js'></script>
   <script type="text/javascript" src="js/jquery.1.8.3.min.js"></script>
   <script type="text/javascript" src="js/json.js"></script>
   <script type="text/javascript" src="./library/buzz.js"></script>
@@ -20,7 +21,7 @@
   <script src="js/modernizr.custom.js"></script>
 
   <script type="text/javascript" src="js/constantes.js"></script>
-  <script type="text/javascript" src="js/classes/Personnage.js"></script>
+  <script type="text/javascript" src="js/classes/Monster.js"></script>
   <script type="text/javascript" src="js/classes/Tileset.js"></script>
   <script type="text/javascript" src="js/classes/Map.js"></script>
   <script type="text/javascript" src="js/classes/Tower.js"></script>
