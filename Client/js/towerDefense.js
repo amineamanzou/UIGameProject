@@ -8,17 +8,6 @@ var tour = new Tower("test.png", 14, 7, DIRECTION.BAS);
 tourPos.push(new Array(14,7));
 map.addTour(tour);
 
-//Placement des tours
-window.onclick = function() {
-	var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth);
-	var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
-
-	var tour = new Tower("test.png", x, y, DIRECTION.BAS);
-	tourPos.push(new Array(x,y));
-	map.addTour(tour);
-	plusCourtChemin();
-}
-
 function plusCourtChemin() {
 	var graph = new Graph(map.walkable);
 	var start = graph.nodes[monstre1.x][monstre1.y];
@@ -26,47 +15,6 @@ function plusCourtChemin() {
 	var result = astar.search(graph.nodes, start, end);
 	return result;
 }
-
-function movePCM(chemin) {
-	for(i=0;i<chemin.length;i++) {
-		monstre1X = monstre1.x;
-		monstre1Y = monstre1.y;
-		x = chemin[i].x;
-		y = chemin[i].y;
-		
-		if(y<monstre1Y) {
-			//alert("haut");
-			monstre1.deplacer(DIRECTION.HAUT, map);
-		} else if(y>monstre1Y) {
-			//alert("bas");
-			monstre1.deplacer(DIRECTION.BAS, map);
-		} else if(x<monstre1X) {
-			//alert("gauche");
-			monstre1.deplacer(DIRECTION.GAUCHE, map);
-		} else if (x>monstre1X) {
-			//alert("droite");
-			monstre1.deplacer(DIRECTION.DROITE, map);
-		}
-	}
-}
-
-/*
-function haut() {
-	monstre1.deplacer(DIRECTION.HAUT, map);
-}
-
-function bas() {
-	monstre1.deplacer(DIRECTION.BAS, map);
-}
-
-function gauche() {
-	monstre1.deplacer(DIRECTION.GAUCHE, map);
-}
-
-function droite() {
-	monstre1.deplacer(DIRECTION.droite, map);
-}
-*/
 
 function deplacementPCM() {
 	var chemin = plusCourtChemin();
@@ -125,4 +73,3 @@ window.onload = function() {
 	}	
 
 }
-

@@ -20,6 +20,7 @@
   <script src="./css/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
   <script src="js/modernizr.custom.js"></script>
 
+  <script type="text/javascript" src="js/menu.js"></script>
   <script type="text/javascript" src="js/constantes.js"></script>
   <script type="text/javascript" src="js/classes/Monster.js"></script>
   <script type="text/javascript" src="js/classes/Tileset.js"></script>
@@ -64,8 +65,15 @@
 <body>
 
   <?php require_once 'include/menu.php'; ?>
+  <div class="menuTour">
+    <ul>
+      <li><img src="./img/testMenu.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(1);"></li>
+      <li><img src="./img/testMenu.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(2);"></li>
+      <li><img src="./img/testMenu.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(3);"></li>
+      <li><img src="./img/testMenu.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(4);"></li>
+    </ul>
+  </div>
   <canvas id="canvas" width="600" height="600">Votre navigateur ne supporte pas le conteneur canvas d'HTML 5.</canvas>
-
 </body>
 
 <script src="js/classie.js"></script>
