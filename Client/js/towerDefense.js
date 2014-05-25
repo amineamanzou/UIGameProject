@@ -16,8 +16,66 @@ function plusCourtChemin() {
 	return result;
 }
 
+function plusCourtChemin4Coins() {
+	var graph = new Graph(map.walkable);
+	var start = graph.nodes[monstre1.x][monstre1.y];
+
+	var resultH;
+	var resultB;
+	var resultG;
+	var resultD;
+
+	var h;
+	var b;
+	var g;
+	var d;
+
+	if((tourPos[0][1])-1 >0) {
+		var endH = graph.nodes[tourPos[0][0]][(tourPos[0][1])-1];
+		resultH = astar.search(graph.nodes, start, endH);
+		h = resultH.length;
+	} else {
+		h = 999;
+	}
+	
+	if((tourPos[0][1])+1 <15) {
+		var endB = graph.nodes[tourPos[0][0]][(tourPos[0][1])+1]; 
+		resultB = astar.search(graph.nodes, start, endB);
+		b = resultB.length;
+	} else {
+		b = 999;
+	}
+	
+	if((tourPos[0][0])-1 >0) {
+		var endG = graph.nodes[(tourPos[0][0])-1][tourPos[0][1]];
+		resultG = astar.search(graph.nodes, start, endG);
+		g = resultG.length;
+	} else {
+		g = 999;
+	}
+	 
+	if((tourPos[0][0])+1 <15) {
+		var endD = graph.nodes[(tourPos[0][0])+1][tourPos[0][1]]; 
+		resultD = astar.search(graph.nodes, start, endD);
+		d = resultD.length;
+	} else {
+		d = 999;
+	}
+	
+	if(h<=b && h<=g && h<=d) {
+		return resultH;
+	} else if(b<=h && b<=g && b<=d) {
+		return resultB;
+	} else if(g<=h && g<=b && g<=d) {
+		return resultG;
+	} else {
+		return resultD;
+	}
+
+}
+
 function deplacementPCM() {
-	var chemin = plusCourtChemin();
+	var chemin = plusCourtChemin4Coins();
 	monstre1X = monstre1.x;
 	monstre1Y = monstre1.y;
 	x = chemin[0].x;
