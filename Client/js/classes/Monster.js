@@ -1,8 +1,5 @@
-var idIncrement = 1;
-
-function Monster(url, x, y, direction) {
-	this.ide = idIncrement;
-	idIncrement += 1;
+function Monster(id ,url, x, y, direction) {
+	this.ide = id;
 
 	this.x = x; // (en cases)
 	this.y = y; // (en cases)

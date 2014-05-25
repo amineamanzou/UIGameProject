@@ -52,10 +52,12 @@ Map.prototype.addTour = function(tour) {
 
 Map.prototype.deleteTour = function(id) {
 	var bfr = [];
-   	for(var i = 0; i < this.length; i++) {
-      	if(this[i] != id) {
-       		bfr.push(this[i]);
+
+   	for(var i = 0; i < this.tours.length; i++) {
+      	if(this.tours[i].ide != id) {
+       		bfr.push(this.tours[i]);
       	}
    	}
+
    	this.tours = bfr;
 }

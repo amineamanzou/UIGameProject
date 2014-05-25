@@ -1,12 +1,30 @@
+var idIncrementTower = 1;
+var idIncrementMonster = 1;
+
 var map = new Map("premiere");
 
-var monstre1 = new Monster("personnage.png", 7, 14, DIRECTION.BAS);
+var monstre1 = new Monster(idIncrementMonster, "personnage.png", 7, 14, DIRECTION.BAS);
+idIncrementMonster += 1;
 map.addMonstre(monstre1);
 
 var tourPos = new Array();
-var tour = new Tower("test.png", 14, 7, DIRECTION.BAS);
+var tour = new Tower(idIncrementTower, "test.png", 14, 7, DIRECTION.BAS);
+idIncrementTower += 1;
 tourPos.push(tour);
 map.addTour(tour);
+
+//Placement des tours
+window.onclick = function() {
+	if(choix != 0) {
+		var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth);
+		var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
+		tour = new Tower(idIncrementTower, tiles, x, y, DIRECTION.BAS);
+		idIncrementTower += 1;
+
+		tourPos.push(tour);
+		map.addTour(tour);
+	}
+}
 
 function plusCourtChemin() {
 	var graph = new Graph(map.walkable);

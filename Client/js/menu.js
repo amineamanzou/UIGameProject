@@ -26,15 +26,3 @@ function choixTour(no) {
 	choix = no;
 	choixSprites();
 }
-
-//Placement des tours
-window.onclick = function() {
-	if(choix != 0) {
-		var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth);
-		var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
-		
-		var tour = new Tower(tiles, x, y, DIRECTION.BAS);
-		tourPos.push(new Array(x,y));
-		map.addTour(tour);
-	}
-}
