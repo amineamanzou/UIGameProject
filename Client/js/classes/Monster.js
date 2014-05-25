@@ -1,4 +1,9 @@
+var idIncrement = 1;
+
 function Monster(url, x, y, direction) {
+	this.ide = idIncrement;
+	idIncrement += 1;
+
 	this.x = x; // (en cases)
 	this.y = y; // (en cases)
 	this.direction = direction;
@@ -16,6 +21,10 @@ function Monster(url, x, y, direction) {
 
 	this.image.src = "sprites/" + url;
 	this.etatAnimation = -1;
+
+	this.pdv = 20;
+	this.degat = 10;
+	this.portee = 2;
 }
 
 Monster.prototype.dessinerMonstre = function(context) {
@@ -114,3 +123,4 @@ Monster.prototype.deplacer = function(direction, map) {
 		
 	return true;
 }
+

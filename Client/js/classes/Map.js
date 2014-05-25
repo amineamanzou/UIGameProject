@@ -49,3 +49,13 @@ Map.prototype.addMonstre = function(monstre) {
 Map.prototype.addTour = function(tour) {
 	this.tours.push(tour);
 }
+
+Map.prototype.deleteTour = function(id) {
+	var bfr = [];
+   	for(var i = 0; i < this.length; i++) {
+      	if(this[i] != id) {
+       		bfr.push(this[i]);
+      	}
+   	}
+   	this.tours = bfr;
+}

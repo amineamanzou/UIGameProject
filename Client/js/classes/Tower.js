@@ -1,4 +1,9 @@
+var idIncrement = 1;
+
 function Tower(url, x, y, direction) {
+	this.ide = idIncrement;
+	idIncrement += 1;
+
 	this.x = x; // (en cases)
 	this.y = y; // (en cases)
 	this.direction = direction;
@@ -16,6 +21,10 @@ function Tower(url, x, y, direction) {
 
 	this.image.src = "sprites/" + url;
 	this.etatAnimation = -1;
+
+	this.pdv = 15;
+	this.degat = 5;
+	this.portee = 5;
 }
 
 Tower.prototype.dessinerTower = function(context) {
