@@ -1,4 +1,5 @@
 var tailleX = 20;
+var tailleY = 10;
 
 function Tower(id, url, x, y, direction) {
 	this.ide = id;
@@ -77,13 +78,13 @@ Tower.prototype.dessinerTower = function(context) {
    	context.fillStyle = "red";
    	var x = (this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + decalageX + 6;
 	var y = (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) + decalageY - 10;
-   	context.fillRect(x, y, tailleX, 10);
+   	context.fillRect(x, y, tailleX, tailleY);
 
    	context.fillStyle = "green";
    	var pdv = (this.pdv/this.totalPdv) * tailleX;
    	var x = (this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + decalageX + 6;
 	var y = (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) + decalageY - 10;
-   	context.fillRect(x, y, pdv, 10);
+   	context.fillRect(x, y, pdv, tailleY);
 
 }
 
