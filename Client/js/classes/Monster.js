@@ -20,7 +20,7 @@ function Monster(id ,url, x, y, direction) {
 	this.etatAnimation = -1;
 
 	this.pdv = 20;
-	this.degat = 10;
+	this.degat = 5;
 	this.portee = 2;
 }
 

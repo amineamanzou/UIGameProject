@@ -1,3 +1,5 @@
+var tailleX = 20;
+
 function Tower(id, url, x, y, direction) {
 	this.ide = id;
 
@@ -20,6 +22,7 @@ function Tower(id, url, x, y, direction) {
 	this.etatAnimation = -1;
 
 	this.pdv = 15;
+	this.totalPdv = 15;
 	this.degat = 5;
 	this.portee = 5;
 }
@@ -69,5 +72,18 @@ Tower.prototype.dessinerTower = function(context) {
 	(this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + decalageX, (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) + decalageY, // Point de destination (dépend de la taille du Tower)
 	this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du Tower)
 	);
+
+    //point de vie
+   	context.fillStyle = "red";
+   	var x = (this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + decalageX + 6;
+	var y = (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) + decalageY - 10;
+   	context.fillRect(x, y, tailleX, 10);
+
+   	context.fillStyle = "green";
+   	var pdv = (this.pdv/this.totalPdv) * tailleX;
+   	var x = (this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + decalageX + 6;
+	var y = (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) + decalageY - 10;
+   	context.fillRect(x, y, pdv, 10);
+
 }
 
