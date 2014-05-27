@@ -61,3 +61,15 @@ Map.prototype.deleteTour = function(id) {
 
    	this.tours = bfr;
 }
+
+Map.prototype.deleteMonstre = function(id) {
+	var bfr = [];
+
+   	for(var i = 0; i < this.monstres.length; i++) {
+      	if(this.monstres[i].ide != id) {
+       		bfr.push(this.monstres[i]);
+      	}
+   	}
+
+   	this.monstres = bfr;
+}

@@ -3,8 +3,10 @@ var idIncrementMonster = 1;
 
 var map = new Map("premiere");
 
+var monstre = new Array();
 var monstre1 = new Monster(idIncrementMonster, "personnage.png", 7, 14, DIRECTION.BAS);
 idIncrementMonster += 1;
+monstre.push(monstre1);
 map.addMonstre(monstre1);
 
 var tourPos = new Array();
@@ -139,25 +141,44 @@ function deplacementPCM() {
 }
 
 function attaque() {
+	//monstres attaque tours
 	for(i=0; i<tourPos.length; i++) {
-		var portee = distance(monstre1, tourPos[i]);
-		if(portee <= monstre1.portee) {
-			tourPos[i].pdv -= monstre1.degat;
-		}
-		if(tourPos[i].pdv <=0) {
-			map.deleteTour(tourPos[i].ide);
+		for(j=0; j<monstre.length; j++) {
+			var portee = distance(monstre[j], tourPos[i]);
+			if(portee <= monstre[j].portee) {
+				tourPos[i].pdv -= monstre[j].degat;
+				monstre[j].pdv -= tourPos[i].degat;
+			}
 
-			var bfr = [];
-		   	for(var j = 0; j < tourPos.length; j++) {
-		      	if(tourPos[j].ide != tourPos[i].ide) {
-		       		bfr.push(tourPos[j]);
-		      	}
-		   	}
+			if(tourPos[i].pdv <=0) {
+				map.deleteTour(tourPos[i].ide);
 
-   			tourPos = bfr;
-		}
+				var bfr = [];
+			   	for(var j = 0; j < tourPos.length; j++) {
+			      	if(tourPos[j].ide != tourPos[i].ide) {
+			       		bfr.push(tourPos[j]);
+			      	}
+			   	}
+
+	   			tourPos = bfr;
+			}
+
+			if(monstre[j].pdv <=0) {
+				map.deleteMonstre(monstre[j].ide);
+
+				var bfr = [];
+			   	for(var j = 0; j < monstre.length; j++) {
+			      	if(monstre[j].ide != monstre[i].ide) {
+			       		bfr.push(monstre[j]);
+			      	}
+			   	}
+
+	   			monstre = bfr;
+			}
+		}	
 	}
 }
+
 
 function distance(point1, point2) {
   	var xs = 0;
