@@ -21,12 +21,12 @@ window.onclick = function() {
 	if(choix != 0 && placementActive) {
 		var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth); //32*15=480
 		var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
-		tour = new Tower(idIncrementTower, tiles, x, y, DIRECTION.BAS);
-		idIncrementTower += 1;
-
-		tourPos.push(tour);
-		map.addTour(tour);
-
+		if (map.isWalkable(x,y)) {
+			tour = new Tower(idIncrementTower, tiles, x, y, DIRECTION.BAS);
+			idIncrementTower += 1;
+			tourPos.push(tour);
+			map.addTour(tour);
+		}
 		placementActive = false;
 		choix = 0;
 		tourSelectionnee.style.backgroundColor = 'transparent';

@@ -41,6 +41,10 @@ Map.prototype.dessinerMap = function(context) {
 	}
 }
 
+Map.prototype.isWalkable = function(x, y) {
+	return (this.walkable[x][y] == 1);
+}
+
 // Pour ajouter un monstre
 Map.prototype.addMonstre = function(monstre) {
 	this.monstres.push(monstre);
