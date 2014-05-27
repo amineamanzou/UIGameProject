@@ -1,5 +1,7 @@
 var choix = 0;
 var tiles = "";
+var placementActive = false;
+var tourSelectionnee;
 
 function choixSprites() {
 	if(choix == 1) {
@@ -14,15 +16,29 @@ function choixSprites() {
 }
 
 function selection(e) {
-	e.style.backgroundColor='#FF8000';
-	e.style.borderRadius= '10px';
+	if(choix == 0) { 
+		e.style.backgroundColor = '#FF8000';
+		e.style.borderRadius = '10px';
+	}
+	placementActive = false;
 }
 
 function deselection(e) {
-	e.style.backgroundColor='transparent';
+	if(choix == 0) { 
+		e.style.backgroundColor = 'transparent';
+	}
+	placementActive = true;
 }
 
-function choixTour(no) {
-	choix = no;
-	choixSprites();
+function choixTour(no, e) {
+	if(choix == 0) { 
+		tourSelectionnee = e;
+		tourSelectionnee.style.backgroundColor = 'green';
+		tourSelectionnee.style.borderRadius = '10px';
+		choix = no;
+		choixSprites();
+	} else {
+		e.style.backgroundColor = 'transparent';
+		choix = 0;
+	}	
 }
