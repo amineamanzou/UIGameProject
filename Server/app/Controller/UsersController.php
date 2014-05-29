@@ -15,7 +15,7 @@ class UsersController extends AppController {
     
     public function beforeFilter()
     {
-        $this->Auth->allow('add','signin', 'signout', 'signup', 'activate');
+        $this->Auth->allow('signin', 'signout', 'signup', 'activate');
     }
 
     public function isAuthorized($user) {
@@ -64,7 +64,7 @@ class UsersController extends AppController {
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Invalid user'));
         }
-        if ($this->request->is('post') || $this->request->is('put')) {
+        if ($this->request->is('post')) {
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'),'flash/success');
                 $this->redirect(array('action' => 'index'));
