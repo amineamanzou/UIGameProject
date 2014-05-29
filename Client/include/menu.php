@@ -1,7 +1,7 @@
 
 <div class="container menu">
     <nav id="bt-menu" class="bt-menu">
-        <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+        <a href="#" class="bt-menu-trigger" onclick="pause();"><span>Menu</span></a>
         <ul>
             <li><a href="#">Profil</a></li>
             <li><a href="#">Badges</a></li>

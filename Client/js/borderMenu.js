@@ -26,6 +26,11 @@
 			// event type (if mobile use touch events)
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
+
+				var canvas = document.getElementById('canvas');
+				var ctx = canvas.getContext('2d');	
+				gameLoad(ctx);
+
 				classie.remove( menu, 'bt-menu-open' );
 				classie.add( menu, 'bt-menu-close' );
 			},

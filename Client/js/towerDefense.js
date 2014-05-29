@@ -27,6 +27,14 @@ idIncrementPrincipalTower += 1;
 principalTower.push(tourP);
 map.addTourPrincipale(tourP);
 
+
+var jeu1, jeu2, jeu3;
+function pause() {
+	clearInterval(jeu1);
+	clearInterval(jeu2);
+	clearInterval(jeu3);
+}
+
 //Placement des tours
 window.onclick = function() {
 	if(choix != 0 && placementActive) {
@@ -259,25 +267,30 @@ function mobFrequency() {
 	}
 }
 
+	
+function gameLoad(ctx) {
+	jeu1 = setInterval(function() {
+		map.dessinerMap(ctx);
+		move();
+	}, 40);
+
+	jeu2 = setInterval(function() {
+		attaque();
+	}, 1000);
+
+	jeu3 = setInterval(function() {
+		mobFrequency();
+	}, timeInterval);
+}	
+
 window.onload = function() {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 
 	canvas.width  = map.getLargeur() * TAILLE_TILE;
 	canvas.height = map.getHauteur() * TAILLE_TILE;
-	
-	setInterval(function() {
-		map.dessinerMap(ctx);
-		move();
-	}, 40);
 
-	setInterval(function() {
-		attaque();
-	}, 1000);
-
-	setInterval(function() {
-		mobFrequency();
-	}, timeInterval);
+	gameLoad(ctx);
 	
 	// Gestion du clavier
 	window.onkeydown = function(event) {
