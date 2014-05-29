@@ -176,27 +176,114 @@ class UsersController extends AppController {
      */
     
     /**
-     *   status = 0 // failed
-     *   status = 1 // success
-     *   status = 2 // wrong call
-     *   status = 3 // account not activated
-     *   status = 4 // user unknown
+     *   status = 0 // Failed
+     *   status = 1 // Success
+     *   status = 2 // Wrong call
+     *   status = 3 // Inactive account
+     *   status = 4 // Unknown user
      */
-    public function signin()
-    {
+    public function signin() {
+        $return = array();
+        $return['status'] = 2;
         
+        if($this->request->is('post'))
+        {
+            $username = $this->request->data['username'];
+            $password = $this->request->data['password'];
+            $password = $this->Auth->password($password);
+            
+            // Generating a session token
+            $timestamp = time();
+            $token = md5("uigameproject".$username . $timestamp);
+            // Retrieving user
+            $user = $this->User->find('first', array('conditions'=>array('username'=> $username, 'password'=>$password)));
+            
+            if($user)
+            {
+                if($user['User']['active'])
+                {
+                    // Deleting useless data
+                    $user['Date'] = "NULL";
+                    $this->User->id = $user['User']['id'];
+                    $time = date('Y-m-d H:i:s');
+                    // Creating the signin log
+                    $data = array(
+                        'Date' => array (
+                            'time'=> $time,
+                            'user_id'=> $user['User']['id'],
+                        )
+                    );
+                    // Retrieving number of login
+                    $nbLogin = $this->Date->find('count', array(
+                        'conditions' => array('Date.user_id' => $user['User']['id'])
+                    ));
+                    // Updating user data & saving the session token
+                    $this->User->set('nb_login',$nbLogin+1);
+                    $this->User->set('last_login', $time);
+                    $this->User->set('token', $token);
+                    $user['User']['token'] = $token;
+                    if($this->User->save())
+                    {
+                        $this->Date->query("INSERT INTO dates(dates.`id`,dates.`time`,dates.`user_id`) 
+                        			VALUES (NULL,'".$time."','".$user['User']['id']."')");
+                        $return['status'] = 1;
+                        $return['User'] = $user;
+                    }
+                    else
+                    {
+                        $return['status'] = 0;
+                    }
+                }
+                else
+                {
+                    $return['status'] = 3;
+                }
+            }
+            else
+            {
+                $return['status'] = 4; 
+            }
+            
+        }
+        
+        return new CakeResponse(array('body'=>json_encode($return)));
     }
     
     /**
-     *   status = 0 // failed
-     *   status = 1 // success
-     *   status = 2 // wrong call
-     *   status = 3 // account not activated
-     *   status = 4 // user unknown
+     *   status = 0 // Failed
+     *   status = 1 // Success
+     *   status = 2 // Wrong call
+     *   status = 3 // Inactive account
+     *   status = 4 // Unknown user
      */
-    public function signout()
-    {
+    public function signout(){
+        $return = array();
+        $return['status'] = 2;
+        $return['message'] = '';
         
+        if($this->request->is('post')) {
+            $this->User->id = $this->request->data['id'];
+            if($this->User->exists()) {
+                $this->User->set('token', "");
+                if($this->User->save())
+                {
+                    $return['status'] = 1;
+                }
+                else
+                {
+                    $return['status'] = 0;
+                    $return['message'] = "Impossible d'enregistrer la fermeture de session";
+                }
+                
+            }
+            else
+            {
+                $return['status'] = 0;
+                $return['message'] = "L'utilisateur ". $this->request->data['id'] ." n'existe pas.";
+            }
+        }
+        
+        return new CakeResponse(array('body'=>json_encode($return)));
     }
     
     /**
