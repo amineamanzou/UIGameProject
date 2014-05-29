@@ -9,7 +9,7 @@ function Map(nom) {
 	this.terrain = mapData.terrain;
 	this.walkable = mapData.walkable;
 
-	// Liste des personnages présents sur le terrain.
+	// Liste des monstres présents sur le terrain.
 	this.monstres = new Array();
 
 	this.tours = new Array();

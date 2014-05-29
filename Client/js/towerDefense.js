@@ -1,15 +1,28 @@
+/* ------------------------- */
+/* OPTION DE LA CARTE (JSON) */
+/* ------------------------- */
+var musicName = "./sound/MusicHalo.mp3";
+var mapName = "premiere";
+var gold = 1000;
+
+var mobName = new Array("personnage","test");
+var mobNb= new Array(1,2);
+var mob = new Array(mobName,mobNb);
+/* ------------------------- */
+
+
 var idIncrementTower = 1;
 var idIncrementMonster = 1;
 
-var map = new Map("premiere");
-
+var map = new Map(mapName);
 var monstre = new Array();
+var tourPos = new Array();
+
 var monstre1 = new Monster(idIncrementMonster, "personnage.png", 7, 14, DIRECTION.BAS);
 idIncrementMonster += 1;
 monstre.push(monstre1);
 map.addMonstre(monstre1);
 
-var tourPos = new Array();
 var tour = new Tower(idIncrementTower, "test.png", 14, 7, DIRECTION.BAS);
 idIncrementTower += 1;
 tourPos.push(tour);
@@ -17,7 +30,6 @@ map.addTour(tour);
 
 //Placement des tours
 window.onclick = function() {
-
 	if(choix != 0 && placementActive) {
 		var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth); //32*15=480
 		var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
@@ -27,6 +39,7 @@ window.onclick = function() {
 			tourPos.push(tour);
 			map.addTour(tour);
 		}
+
 		placementActive = false;
 		choix = 0;
 		tourSelectionnee.style.backgroundColor = 'transparent';

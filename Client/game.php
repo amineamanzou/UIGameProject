@@ -31,7 +31,7 @@
 
   <script type="text/javascript">
 
-    var mySound = new buzz.sound("./sound/MusicHalo.mp3");
+    var mySound = new buzz.sound(musicName);
 
     mySound.play()
     .fadeIn()
@@ -66,7 +66,7 @@
 
   <?php require_once 'include/menu.php'; ?>
   <div class="menuTour">
-    <ul>
+    <ul id="listeMenu">
       <li><img src="./img/menuMob1.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(1, this);"></li>
       <li><img src="./img/menuMob2.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(2, this);"></li>
       <li><img src="./img/menuMob3.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(3, this);"></li>

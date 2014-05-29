@@ -38,7 +38,8 @@ function choixTour(no, e) {
 		choix = no;
 		choixSprites();
 	} else {
-		e.style.backgroundColor = 'transparent';
+		tourSelectionnee.style.backgroundColor = 'transparent';
 		choix = 0;
+		choixTour(no, e);
 	}	
 }
