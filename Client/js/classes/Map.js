@@ -9,10 +9,9 @@ function Map(nom) {
 	this.terrain = mapData.terrain;
 	this.walkable = mapData.walkable;
 
-	// Liste des monstres présents sur le terrain.
 	this.monstres = new Array();
-
 	this.tours = new Array();
+	this.toursPrincipales = new Array();
 }
 
 Map.prototype.getHauteur = function() {
@@ -39,6 +38,10 @@ Map.prototype.dessinerMap = function(context) {
 	for(var i = 0, l = this.tours.length ; i < l ; i++) {
 		this.tours[i].dessinerTower(context);
 	}
+
+		for(var i = 0, l = this.toursPrincipales.length ; i < l ; i++) {
+		this.toursPrincipales[i].dessinerTowerPrincipale(context);
+	}
 }
 
 Map.prototype.isWalkable = function(x, y) {
@@ -54,6 +57,10 @@ Map.prototype.addTour = function(tour) {
 	this.tours.push(tour);
 }
 
+Map.prototype.addTourPrincipale = function(tour) {
+	this.toursPrincipales.push(tour);
+}
+
 Map.prototype.deleteTour = function(id) {
 	var bfr = [];
 
@@ -64,6 +71,18 @@ Map.prototype.deleteTour = function(id) {
    	}
 
    	this.tours = bfr;
+}
+
+Map.prototype.deleteTourPrincipale = function(id) {
+	var bfr = [];
+
+   	for(var i = 0; i < this.toursPrincipales.length; i++) {
+      	if(this.toursPrincipales[i].ide != id) {
+       		bfr.push(this.toursPrincipales[i]);
+      	}
+   	}
+
+   	this.toursPrincipales = bfr;
 }
 
 Map.prototype.deleteMonstre = function(id) {

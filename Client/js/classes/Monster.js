@@ -19,8 +19,8 @@ function Monster(id ,url, x, y, direction) {
 	this.image.src = "sprites/" + url;
 	this.etatAnimation = -1;
 
-	this.pdv = 100;
-	this.totalPdv = 100;
+	this.pdv = 30;
+	this.totalPdv = this.pdv ;
 	this.degat = 5;
 	this.portee = 2;
 }

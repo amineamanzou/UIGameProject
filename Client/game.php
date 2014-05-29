@@ -26,7 +26,7 @@
   <script type="text/javascript" src="js/classes/Tileset.js"></script>
   <script type="text/javascript" src="js/classes/Map.js"></script>
   <script type="text/javascript" src="js/classes/Tower.js"></script>
-  <script type="text/javascript" src="js/moteur.js"></script>
+  <script type="text/javascript" src="js/classes/PrincipalTower.js"></script>
   <script type="text/javascript" src="js/towerDefense.js"></script>
 
   <script type="text/javascript">
@@ -37,8 +37,8 @@
     .fadeIn()
     .loop()
     .bind( "timeupdate", function() {
-     var timer = buzz.toTimer( this.getTime() );
-     document.getElementById( "timer" ).innerHTML = timer;
+      var timer = buzz.toTimer( this.getTime() );
+      //document.getElementById( "timer" ).innerHTML = timer;
     });
 
     var music = true;

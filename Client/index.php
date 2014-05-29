@@ -27,7 +27,7 @@
               .loop()
               .bind( "timeupdate", function() {
                  var timer = buzz.toTimer( this.getTime() );
-                 document.getElementById( "timer" ).innerHTML = timer;
+                 //document.getElementById( "timer" ).innerHTML = timer;
               });
 
           var music = true;
