@@ -31,6 +31,13 @@ function deselection(e) {
 }
 
 function choixTour(no, e) {
+	if(tourSelectionnee == e) {
+		tourSelectionnee.style.backgroundColor = 'transparent';
+		tourSelectionnee = null;
+		choix = 0;
+		choixTour(no, e);
+	}
+
 	if(choix == 0) { 
 		tourSelectionnee = e;
 		tourSelectionnee.style.backgroundColor = 'green';

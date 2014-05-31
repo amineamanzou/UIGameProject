@@ -50,6 +50,7 @@ window.onclick = function() {
 		placementActive = false;
 		choix = 0;
 		tourSelectionnee.style.backgroundColor = 'transparent';
+		tourSelectionnee = null;
 	}
 }
 
@@ -166,12 +167,12 @@ function allTower(mx,my) {
 	return chemin;
 }
 
-function attaque() {
+
+function mobSucide() {
 	//monstres attaque tours
 	for(i=0; i<principalTower.length; i++) {
 		for(j=0; j<monstre.length; j++) {
 			var portee = distance(monstre[j], principalTower[i]);
-
 			if(portee <= 1) {
 				principalTower[i].pdv -= (monstre[j].degat)*2;
 
@@ -187,6 +188,15 @@ function attaque() {
 	   			monstre = bfr;
 	   			break;
 			}
+
+		}
+	}
+}
+
+function attaque() {
+	//monstres attaque tours
+	for(i=0; i<principalTower.length; i++) {
+		for(j=0; j<monstre.length; j++) {
 
 			if(portee <= monstre[j].portee) {
 				principalTower[i].pdv -= monstre[j].degat;
@@ -272,6 +282,7 @@ function gameLoad(ctx) {
 	jeu1 = setInterval(function() {
 		map.dessinerMap(ctx);
 		move();
+		mobSucide();
 	}, 40);
 
 	jeu2 = setInterval(function() {
