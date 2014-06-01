@@ -304,8 +304,9 @@ window.onload = function() {
 	canvas.width  = map.getLargeur() * TAILLE_TILE;
 	canvas.height = map.getHauteur() * TAILLE_TILE;
 
-	map.dessinerMap(ctx);
-	//gameLoad(ctx);
+	jeu1 = setInterval(function() {
+		map.dessinerMap(ctx);
+	}, 40);
 	
 	// Gestion du clavier
 	window.onkeydown = function(event) {
