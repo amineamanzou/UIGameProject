@@ -73,7 +73,7 @@
       <li><img src="./img/menuMob4.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(4, this);"></li>
     </ul>
   </div>
-  <canvas id="canvas" width="600" height="600">Votre navigateur ne supporte pas le conteneur canvas d'HTML 5.</canvas>
+  <canvas id="canvas" width="600" height="600" onclick="positionOk();">Votre navigateur ne supporte pas le conteneur canvas d'HTML 5.</canvas>
 </body>
 
 <script src="js/classie.js"></script>

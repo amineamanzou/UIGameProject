@@ -3,6 +3,9 @@ var tiles = "";
 var placementActive = false;
 var tourSelectionnee;
 
+var xm = -9999;
+var ym = -9999;
+
 function choixSprites() {
 	if(choix == 1) {
 		tiles = "test.png";
@@ -36,6 +39,7 @@ function choixTour(no, e) {
 		tourSelectionnee = null;
 		choix = 0;
 		choixTour(no, e);
+		canvas.onmousemove = null;
 	}
 
 	if(choix == 0) { 
@@ -44,6 +48,7 @@ function choixTour(no, e) {
 		tourSelectionnee.style.borderRadius = '10px';
 		choix = no;
 		choixSprites();
+		canvas.onmousemove = positionOk;
 	} else {
 		tourSelectionnee.style.backgroundColor = 'transparent';
 		choix = 0;

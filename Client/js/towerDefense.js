@@ -54,6 +54,7 @@ window.onclick = function() {
 		choix = 0;
 		tourSelectionnee.style.backgroundColor = 'transparent';
 		tourSelectionnee = null;
+		canvas.onmousemove = null;
 	}
 }
 
@@ -280,7 +281,20 @@ function mobFrequency() {
 	}
 }
 
-	
+function positionOk() {
+	var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth); 
+	var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
+	xm = x;
+	ym = y;
+	var walk = map.isWalkable(x,y);
+	map.positionSouris(ctx, x, y, walk);
+}	
+
+function positionOkRefresh() {
+	var walk = map.isWalkable(xm,ym);
+	map.positionSouris(ctx, xm, ym, walk);
+}
+
 function gameLoad(ctx) {
 	jeu1 = setInterval(function() {
 		map.dessinerMap(ctx);
@@ -306,6 +320,10 @@ window.onload = function() {
 
 	jeu1 = setInterval(function() {
 		map.dessinerMap(ctx);
+		if(choix != 0) {
+			positionOkRefresh();
+		}
+
 	}, 40);
 	
 	// Gestion du clavier

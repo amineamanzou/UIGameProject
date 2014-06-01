@@ -23,3 +23,14 @@ Tileset.prototype.dessinerTile = function(numero, context, xDestination, yDestin
 	
 	context.drawImage(this.image, xSource, ySource, TAILLE_TILE, TAILLE_TILE, xDestination, yDestination, TAILLE_TILE, TAILLE_TILE);
 }
+
+Tileset.prototype.positionSouris = function(context, x, y, walk) {
+   	if(walk) {
+   		context.fillStyle = "red";
+   	} else {
+   		context.fillStyle = "green";
+   	}
+   	var xf = (x * TAILLE_TILE);
+	var yf = (y * TAILLE_TILE);
+   	context.fillRect(xf, yf, TAILLE_TILE, TAILLE_TILE);
+}  

@@ -44,6 +44,10 @@ Map.prototype.dessinerMap = function(context) {
 	}
 }
 
+Map.prototype.positionSouris = function(context, x, y, walk) {
+	this.tileset.positionSouris(context, x, y, walk);
+}   	
+
 Map.prototype.isWalkable = function(x, y) {
 	return (this.walkable[x][y] == 1);
 }
