@@ -55,8 +55,6 @@ function choixTour(no, e) {
 		tourSelectionnee.style.backgroundColor = 'transparent';
 		choix = 0;
 		choixTour(no, e);
-		xm = -9999;
-		ym = -9999;
 	}	
 }
 

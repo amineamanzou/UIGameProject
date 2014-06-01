@@ -52,6 +52,18 @@ Map.prototype.isWalkable = function(x, y) {
 	return (this.walkable[x][y] == 1);
 }
 
+Map.prototype.noMob = function(x, y) {
+	var noMob = false;
+	for(var i = 0, l = this.tours.length ; i < l ; i++) {
+		if(this.tours[i].x == x && this.tours[i].y == y) {
+			noMob = true;
+			break;
+		}
+	}
+
+	return noMob;
+}
+
 // Pour ajouter un monstre
 Map.prototype.addMonstre = function(monstre) {
 	this.monstres.push(monstre);

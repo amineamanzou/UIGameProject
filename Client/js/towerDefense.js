@@ -43,7 +43,8 @@ window.onclick = function() {
 	if(choix != 0 && placementActive) {
 		var x = Math.floor(((event.clientX/TAILLE_TILE) * 480) / window.innerWidth); //32*15=480
 		var y = Math.floor(((event.clientY/TAILLE_TILE) * 480) / window.innerHeight);
-		if (!map.isWalkable(x,y)) {
+
+		if (!map.isWalkable(x,y) && !map.noMob(x,y)) {
 			tour = new Tower(idIncrementTower, tiles, x, y, DIRECTION.BAS);
 			idIncrementTower += 1;
 			tourPos.push(tour);
@@ -222,18 +223,20 @@ function attaque() {
 	   			principalTower = bfr;
 			}
 
-			if(monstre[j].pdv <=0) {
-				map.deleteMonstre(monstre[j].ide);
+			if(monstre.length <= 0) {
+				if(monstre[j].pdv <=0) {
+					map.deleteMonstre(monstre[j].ide);
 
-				var bfr = [];
-			   	for(var j = 0; j < monstre.length; j++) {
-			      	if(monstre[j].ide != monstre[i].ide) {
-			       		bfr.push(monstre[j]);
-			      	}
-			   	}
+					var bfr = [];
+				   	for(var j = 0; j < monstre.length; j++) {
+				      	if(monstre[j].ide != monstre[i].ide) {
+				       		bfr.push(monstre[j]);
+				      	}
+				   	}
 
-	   			monstre = bfr;
-			}
+		   			monstre = bfr;
+				}
+			}	
 		}	
 	}
 
@@ -289,12 +292,20 @@ function positionOk() {
 	xm = x;
 	ym = y;
 	var walk = map.isWalkable(x,y);
+	if(!walk) {
+		walk = map.noMob(x,y);
+	}
 	map.positionSouris(ctx, x, y, walk);
 }	
 
 function positionOkRefresh() {
-	var walk = map.isWalkable(xm,ym);
-	map.positionSouris(ctx, xm, ym, walk);
+	if(xm != -9999 && ym != -9999) {
+		var walk = map.isWalkable(xm,ym);
+		if(!walk) {
+			walk = map.noMob(xm,ym);
+		}
+		map.positionSouris(ctx, xm, ym, walk);
+	}
 }
 
 function gameLoad(ctx) {
