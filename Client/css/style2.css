@@ -246,6 +246,15 @@
 	cursor: pointer;
 }
 
+.bt-go {
+	position: fixed;
+	top: 23px;
+	left: 170px;
+	z-index: 1000;
+	display: block;
+	cursor: pointer;
+}
+
 .menuTour {
 	position: relative;
 	background-image: url(../img/menu.png);

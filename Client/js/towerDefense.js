@@ -10,6 +10,9 @@ var mobNb= new Array(1,2);
 var mob = new Array(mobName,mobNb);
 var timeInterval=3000;
 /* ------------------------- */
+	
+var canvas;
+var ctx;
 
 var idIncrementPrincipalTower = 1;
 var idIncrementTower = 1;
@@ -295,13 +298,14 @@ function gameLoad(ctx) {
 }	
 
 window.onload = function() {
-	var canvas = document.getElementById('canvas');
-	var ctx = canvas.getContext('2d');
+	canvas = document.getElementById('canvas');
+	ctx = canvas.getContext('2d');
 
 	canvas.width  = map.getLargeur() * TAILLE_TILE;
 	canvas.height = map.getHauteur() * TAILLE_TILE;
 
-	gameLoad(ctx);
+	map.dessinerMap(ctx);
+	//gameLoad(ctx);
 	
 	// Gestion du clavier
 	window.onkeydown = function(event) {

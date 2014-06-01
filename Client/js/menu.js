@@ -50,3 +50,9 @@ function choixTour(no, e) {
 		choixTour(no, e);
 	}	
 }
+
+function goChange() {
+	var btGo = document.getElementById('btGo');
+	var spanGo = document.getElementById('spanGo');
+	spanGo.className = "imgSound glyphicon glyphicon-forward";
+}
