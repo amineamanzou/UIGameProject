@@ -40,6 +40,8 @@ function choixTour(no, e) {
 		choix = 0;
 		choixTour(no, e);
 		canvas.onmousemove = null;
+		xm = -9999;
+		ym = -9999;
 	}
 
 	if(choix == 0) { 
@@ -53,6 +55,8 @@ function choixTour(no, e) {
 		tourSelectionnee.style.backgroundColor = 'transparent';
 		choix = 0;
 		choixTour(no, e);
+		xm = -9999;
+		ym = -9999;
 	}	
 }
 

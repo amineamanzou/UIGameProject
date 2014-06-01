@@ -55,6 +55,8 @@ window.onclick = function() {
 		tourSelectionnee.style.backgroundColor = 'transparent';
 		tourSelectionnee = null;
 		canvas.onmousemove = null;
+		xm = -9999;
+		ym = -9999;
 	}
 }
 
@@ -300,6 +302,10 @@ function gameLoad(ctx) {
 		map.dessinerMap(ctx);
 		move();
 		mobSucide();
+
+		if(choix != 0) {
+			positionOkRefresh();
+		}
 	}, 40);
 
 	jeu2 = setInterval(function() {
