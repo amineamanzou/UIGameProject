@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
 
@@ -53,7 +52,39 @@
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="profil">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Profil Section
+                    </div>      
+                </div>
+            </div>
+        </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="badge">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Badge Section
+                    </div>      
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="classement">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Classement Section
+                    </div>      
+                </div>
+            </div>
+        </div>
+        
         <div id="game">
             <canvas id="mapCanvas"></canvas>
 
