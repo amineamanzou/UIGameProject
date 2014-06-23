@@ -11,7 +11,7 @@
             <li><a href="http://www.twitter.com/" class="bt-icon icon-twitter">Twitter</a></li>
             <li><a href="https://plus.google.com/" class="bt-icon icon-gplus">Google+</a></li>
             <li><a href="http://www.facebook.com/pages/" class="bt-icon icon-facebook">Facebook</a></li>
-            <li><a href="https://github.com/" class="bt-icon icon-github">icon-github</a></li>
+            <li><a href="https://github.com/amineamanzou/UIGameProject" class="bt-icon icon-github">icon-github</a></li>
         </ul>
     </nav>
 
