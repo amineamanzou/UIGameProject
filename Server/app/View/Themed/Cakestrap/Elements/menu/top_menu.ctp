@@ -40,7 +40,7 @@
                               </li>
                         <?php endif; ?>
                         <li  <?= (strcasecmp($this->params['controller'],'dates') == 0)?'class="active"':''; ?> >
-                            <?php echo $this->Html->link('Historique des connexions',array('controller' => 'dates', 'action' => 'loginHistory')); ?>
+                            <?php echo $this->Html->link('Historique des connexions',array('controller' => 'dates', 'action' => 'history')); ?>
                         </li>
                     </ul><!-- /.nav navbar-nav -->
                     <ul class="nav navbar-nav navbar-right">
