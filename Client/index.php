@@ -141,19 +141,24 @@
                 request.abort();
             }
             var $inputs = $("#signin").find('input');
-            var data = $("#signin").serialize();
+            var data = $("#signin");
             $inputs.prop("disabled", true);
-            console.log(data);
             request = $.ajax({
                 type: 'POST',
-                url: 'http://backend.towerdefense.dev/users/signin',
+                url: 'http://backend.towerdefense.dev/users/signin?username='+$inputs[0].value+'&password='+$inputs[1].value,
                 data: data
             });
 
             request.done(function (response, textStatus, jqXHR){
-                $("#game").hide().fadeIn(1000);
-                $(".connexion").hide();
-                $(".menu").show();
+                response = JSON.parse(response);
+                if(response.status === 1){
+                    $("#game").hide().fadeIn(1000);
+                    $(".connexion").hide();
+                    $(".menu").show();
+                }
+                else {
+                    alert("Erreur de connexion"); 
+                }
                 $inputs.prop("disabled", false);
             });
             request.fail(function (jqXHR, textStatus, errorThrown){

@@ -11,11 +11,11 @@ class UsersController extends AppController {
 
     public $components = array('Paginator');
 
-    public $uses = array('User');
+    public $uses = array('User','Date');
     
     public function beforeFilter()
     {
-        $this->Auth->allow('signin', 'signout', 'signup', 'activate');
+        $this->Auth->allow( 'signin', 'signout', 'signup', 'activate');
     }
 
     public function isAuthorized($user) {
@@ -186,64 +186,60 @@ class UsersController extends AppController {
         $return = array();
         $return['status'] = 2;
         
-        if($this->request->is('post'))
+        $username = $this->request->query['username'];
+        $password = $this->request->query['password'];
+        $password = $this->Auth->password($password);
+
+        // Generating a session token
+        $timestamp = time();
+        $token = md5("uigameproject".$username . $timestamp);
+        // Retrieving user
+        $user = $this->User->find('first', array('conditions'=>array('username'=> $username, 'password'=>$password)));
+
+        if($user)
         {
-            $username = $this->request->data['username'];
-            $password = $this->request->data['password'];
-            $password = $this->Auth->password($password);
-            
-            // Generating a session token
-            $timestamp = time();
-            $token = md5("uigameproject".$username . $timestamp);
-            // Retrieving user
-            $user = $this->User->find('first', array('conditions'=>array('username'=> $username, 'password'=>$password)));
-            
-            if($user)
+            if($user['User']['active'])
             {
-                if($user['User']['active'])
+                // Deleting useless data
+                $user['Date'] = "NULL";
+                $this->User->id = $user['User']['id'];
+                $time = date('Y-m-d H:i:s');
+                // Creating the signin log
+                $data = array(
+                    'Date' => array (
+                        'time'=> $time,
+                        'user_id'=> $user['User']['id'],
+                    )
+                );
+                // Retrieving number of login
+                $nbLogin = $this->Date->find('count', array(
+                    'conditions' => array('Date.user_id' => $user['User']['id'])
+                ));
+                // Updating user data & saving the session token
+                $this->User->set('nb_login',$nbLogin+1);
+                $this->User->set('last_login', $time);
+                $this->User->set('token', $token);
+                $user['User']['token'] = $token;
+                if($this->User->save())
                 {
-                    // Deleting useless data
-                    $user['Date'] = "NULL";
-                    $this->User->id = $user['User']['id'];
-                    $time = date('Y-m-d H:i:s');
-                    // Creating the signin log
-                    $data = array(
-                        'Date' => array (
-                            'time'=> $time,
-                            'user_id'=> $user['User']['id'],
-                        )
-                    );
-                    // Retrieving number of login
-                    $nbLogin = $this->Date->find('count', array(
-                        'conditions' => array('Date.user_id' => $user['User']['id'])
-                    ));
-                    // Updating user data & saving the session token
-                    $this->User->set('nb_login',$nbLogin+1);
-                    $this->User->set('last_login', $time);
-                    $this->User->set('token', $token);
-                    $user['User']['token'] = $token;
-                    if($this->User->save())
-                    {
-                        $this->Date->query("INSERT INTO dates(dates.`id`,dates.`time`,dates.`user_id`) 
-                        			VALUES (NULL,'".$time."','".$user['User']['id']."')");
-                        $return['status'] = 1;
-                        $return['User'] = $user;
-                    }
-                    else
-                    {
-                        $return['status'] = 0;
-                    }
+                    $this->Date->query("INSERT INTO dates(dates.`id`,dates.`time`,dates.`user_id`) 
+                                            VALUES (NULL,'".$time."','".$user['User']['id']."')");
+                    $return['status'] = 1;
+                    $return['User'] = $user;
                 }
                 else
                 {
-                    $return['status'] = 3;
+                    $return['status'] = 0;
                 }
             }
             else
             {
-                $return['status'] = 4; 
+                $return['status'] = 3;
             }
-            
+        }
+        else
+        {
+            $return['status'] = 4; 
         }
         
         return new CakeResponse(array('body'=>json_encode($return)));
