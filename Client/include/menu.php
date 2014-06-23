@@ -6,8 +6,6 @@
             <li><a href="#">Profil</a></li>
             <li><a href="#">Badges</a></li>
             <li><a href="#">Classement</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
         </ul>
         <ul>
             <li><a href="http://www.twitter.com/" class="bt-icon icon-twitter">Twitter</a></li>

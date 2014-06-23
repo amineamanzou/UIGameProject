@@ -16,74 +16,6 @@
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
         <link rel="stylesheet" type="text/css" href="css/icons.css" />
         <link rel="stylesheet" type="text/css" href="css/style2.css" />
-        <script src="js/modernizr.custom.js"></script>
-
-        <script type="text/javascript">
-            var request;
-            var mySound = new buzz.sound("./sound/MusicHalo.mp3");
-
-            mySound.play()
-            .fadeIn()
-            .loop()
-            .bind( "timeupdate", function() {
-                var timer = buzz.toTimer( this.getTime() );
-                //document.getElementById( "timer" ).innerHTML = timer;
-            });
-
-            var music = true;
-
-            window.onresize = resizeOk;
-            function resizeOk() {
-                location.assign(location.href);
-            }
-
-            $(document).ready(function(){
-                $("#game").hide();
-                $(".menu").hide();
-            });
-
-            function begin() {
-                if (request) {
-                    request.abort();
-                }
-                var $inputs = $("#signin").find('input');
-                var data = $("#signin").serialize();
-                $inputs.prop("disabled", true);
-                console.log(data);
-                request = $.ajax({
-                    type: 'POST',
-                    url: 'http://backend.towerdefense.dev/users/signin',
-                    data: data
-                });
-                
-                request.done(function (response, textStatus, jqXHR){
-                    $("#game").hide().fadeIn(1000);
-                    $(".connexion").hide();
-                    $(".menu").show();
-                    $inputs.prop("disabled", false);
-                });
-                request.fail(function (jqXHR, textStatus, errorThrown){
-                    alert("Erreur login"); 
-                    $inputs.prop("disabled", false);
-                });
-            }
-
-            function musicGestion() {
-                if(music) {
-                    $(".imgSound").removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off');
-                    for(var i in buzz.sounds) {
-                        buzz.sounds[i].mute();
-                    }
-                    music=false;
-                } else {
-                    $(".imgSound").removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up');
-                    for(var i in buzz.sounds) {
-                        buzz.sounds[i].unmute();
-                    }
-                    music=true;
-                }
-            }
-        </script>
 
     </head>
     <body>
@@ -159,7 +91,7 @@
                     //Sauvegarde du territoire en base
                     jQuery.ajax({
                         type: 'GET',
-                        url: './module/addTerritory.php',
+                        url: './territoires/list',
                         data: {
                             x: mousePos.x, 
                             y: mousePos.y,
@@ -176,28 +108,76 @@
 
             </script>
 
-            <?php
-//                session_start();
-//                $db = mysql_connect('localhost', 'root', 'root');
-//                mysql_select_db('UIGameProject',$db);
-//
-//                //Lecture des territoires en base
-//                $sql = "SELECT x,y,larg,longu FROM pos_territoires";
-//                $req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
-//                while($data = mysql_fetch_assoc($req)) {
-//                    echo "<script>";
-//                    echo "var x = ".$data['x']." * $(window).width() / ".$data['larg'].";";
-//                    echo "var y = ".$data['y']." * $(window).height() / ".$data['longu'].";";
-//                    echo "var img = document.createElement('img');";
-//                    echo "img.src = './img/pion.png';";
-//                    echo "context.drawImage(img, x , y);";
-//                    echo "</script>";
-//                }
-            ?>
         </div>
 
     </body>
+    <script src="js/modernizr.custom.js"></script>
+    <script type="text/javascript">
+        var request;
+        var mySound = new buzz.sound("./sound/MusicHalo.mp3");
 
+        mySound.play()
+        .fadeIn()
+        .loop()
+        .bind( "timeupdate", function() {
+            var timer = buzz.toTimer( this.getTime() );
+            //document.getElementById( "timer" ).innerHTML = timer;
+        });
+
+        var music = true;
+
+        window.onresize = resizeOk;
+        function resizeOk() {
+            location.assign(location.href);
+        }
+
+        $(document).ready(function(){
+            $("#game").hide();
+            $(".menu").hide();
+        });
+
+        function begin() {
+            if (request) {
+                request.abort();
+            }
+            var $inputs = $("#signin").find('input');
+            var data = $("#signin").serialize();
+            $inputs.prop("disabled", true);
+            console.log(data);
+            request = $.ajax({
+                type: 'POST',
+                url: 'http://backend.towerdefense.dev/users/signin',
+                data: data
+            });
+
+            request.done(function (response, textStatus, jqXHR){
+                $("#game").hide().fadeIn(1000);
+                $(".connexion").hide();
+                $(".menu").show();
+                $inputs.prop("disabled", false);
+            });
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                alert("Erreur login"); 
+                $inputs.prop("disabled", false);
+            });
+        }
+
+        function musicGestion() {
+            if(music) {
+                $(".imgSound").removeClass('glyphicon-volume-up').addClass('glyphicon-volume-off');
+                for(var i in buzz.sounds) {
+                    buzz.sounds[i].mute();
+                }
+                music=false;
+            } else {
+                $(".imgSound").removeClass('glyphicon-volume-off').addClass('glyphicon-volume-up');
+                for(var i in buzz.sounds) {
+                    buzz.sounds[i].unmute();
+                }
+                music=true;
+            }
+        }
+    </script>
     <script src="js/classie.js"></script>
     <script src="js/borderMenu.js"></script>
 
