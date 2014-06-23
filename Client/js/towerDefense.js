@@ -34,7 +34,7 @@ var tourPos = new Array();
 
 mobFrequency();
 
-var tourP = new PrincipalTower(idIncrementTower, "princess.png", 8, 3, DIRECTION.BAS);
+var tourP = new PrincipalTower(idIncrementTower, "princess.png", 13, 7, DIRECTION.BAS);
 idIncrementPrincipalTower += 1;
 principalTower.push(tourP);
 map.addTourPrincipale(tourP);
@@ -224,6 +224,11 @@ function mobSucide() {
 				principalTower[i].pdv -= (monstre[j].degat)*2;
 
 				map.deleteMonstre(monstre[j].ide);
+
+				//ARGENT
+				argent+= monstre[j].argent;
+				document.getElementById("spanGold").innerHTML = ' Argent: ' + argent;
+				achatPossible();
 
 				var bfr = [];
 			   	for(var j = 0; j < monstre.length; j++) {

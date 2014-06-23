@@ -20,7 +20,7 @@ function PrincipalTower(id, url, x, y, direction) {
 	this.image.src = "sprites/" + url;
 	this.etatAnimation = -1;
 
-	this.pdv = 30;
+	this.pdv = 500;
 	this.totalPdv = this.pdv;
 	this.degat = 5;
 	this.portee = 5;
