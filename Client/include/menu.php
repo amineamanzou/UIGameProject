@@ -18,4 +18,8 @@
     <button type="button" class="bt-sound btn btn-default btn-sm" onclick="musicGestion();">
         <span class="imgSound glyphicon glyphicon-volume-up"></span>
     </button>
+
+    <button type="button" id="btGo" class="bt-go btn btn-default btn-sm" onclick="gameLoad(ctx); goChange();">
+        <span id="spanGo" class="imgSound glyphicon glyphicon-play"></span>
+    </button>
 </div>

@@ -64,7 +64,7 @@
 </head>
 <body>
 
-  <?php require_once 'include/menu2.php'; ?>
+  <?php require_once 'include/menu.php'; ?>
   <div class="menuTour">
     <ul id="listeMenu">
       <li><img src="./img/menuMob1.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(1, this);"></li>
