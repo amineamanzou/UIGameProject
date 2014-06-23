@@ -111,32 +111,6 @@
                     };
                 }
 
-                canvas.addEventListener('click', function(evt) {
-                    var mousePos = getMousePos(canvas, evt);
-                    var context = canvas.getContext('2d');
-                    var img = document.createElement('img');
-                    img.src = './img/pion.png';
-
-                    context.drawImage(img, mousePos.x , mousePos.y);
-
-                    //Sauvegarde du territoire en base
-                    jQuery.ajax({
-                        type: 'GET',
-                        url: './territoires/list',
-                        data: {
-                            x: mousePos.x, 
-                            y: mousePos.y,
-                            larg: $(window).width(),
-                            longu: $(window).height()
-                        }, 
-                        success: function(data, textStatus, jqXHR) {
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            alert("Erreur AJAX !!");
-                        }
-                    });
-                }, false);
-
             </script>
 
         </div>
@@ -146,6 +120,7 @@
     <script type="text/javascript">
         var request;
         var mySound = new buzz.sound("./sound/MusicHalo.mp3");
+        var canvas = document.getElementById('mapCanvas');
 
         mySound.play()
         .fadeIn()
@@ -196,6 +171,35 @@
                 alert("Erreur login"); 
                 $inputs.prop("disabled", false);
             });
+            
+            //Sauvegarde du territoire en base
+            jQuery.ajax({
+                type: 'GET',
+                url: 'http://backend.towerdefense.dev/territoires/liste',
+                success: function(response, textStatus, jqXHR) {
+                    var context = canvas.getContext('2d');
+                    response = JSON.parse(response);
+                    if(response.status === 1){
+                        var territoire = response.Territoire;
+                        for(var i=0;i<territoire.length;i++){
+                            var img = document.createElement('img');
+                            img.src = './img/pion.png';
+                            var coordinate = JSON.parse(territoire[i].Territoire.coordinate);
+                            context.drawImage(img, coordinate[0], coordinate[1]);
+                        }
+                        canvas.addEventListener('click', function(evt) {
+                            window.location.href = 'http://towerdefense.dev/game.php';
+                        }, false);
+                    }
+                    else {
+                        alert("Erreur AJAX !!");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("Erreur AJAX !!");
+                }
+            });
+            
         }
 
         function musicGestion() {
