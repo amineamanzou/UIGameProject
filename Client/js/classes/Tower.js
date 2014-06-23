@@ -22,7 +22,7 @@ function Tower(id, url, x, y, direction) {
 	this.image.src = "sprites/" + url;
 	this.etatAnimation = -1;
 
-	this.degat = 10;
+	this.degat = 15;
 	this.portee = 10;
 }
 

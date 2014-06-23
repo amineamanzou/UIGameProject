@@ -10,7 +10,12 @@ var mobNb= new Array(1,2);
 var mob = new Array(mobName,mobNb);
 var timeInterval = 3000;
  
-var argent = 1000;
+var argent = 1347;
+
+var prix1 = 500;
+var prix2 = 700;
+var prix3 = 850;
+var prix4 = 1100;
 /* ------------------------- */
 
 var score = 0;
@@ -53,6 +58,11 @@ window.onclick = function() {
 			idIncrementTower += 1;
 			tourPos.push(tour);
 			map.addTour(tour);
+
+			argent -= prixMob;
+			document.getElementById("spanGold").innerHTML = ' Argent: ' + argent;
+
+			achatPossible();
 		}
 
 		placementActive = false;
@@ -62,6 +72,32 @@ window.onclick = function() {
 		canvas.onmousemove = null;
 		xm = -9999;
 		ym = -9999;
+	}
+}
+
+function achatPossible() {
+	if(prix1 > argent) {
+		document.getElementById('obj1').style.color = 'red';
+	} else {
+		document.getElementById('obj1').style.color = 'white';
+	}
+
+	if(prix2 > argent) {
+		document.getElementById('obj2').style.color = 'red';
+	} else {
+		document.getElementById('obj2').style.color = 'white';
+	}
+
+	if(prix3 > argent) {
+		document.getElementById('obj3').style.color = 'red';
+	} else {
+		document.getElementById('obj3').style.color = 'white';
+	}
+
+	if(prix4 > argent) {
+		document.getElementById('obj4').style.color = 'red';
+	} else {
+		document.getElementById('obj4').style.color = 'white';
 	}
 }
 
@@ -249,11 +285,20 @@ function attaque() {
 			var portee = distance(monstre[j], tourPos[i]);
 			if(portee <= monstre[j].portee) {
 				monstre[j].pdv -= tourPos[i].degat;
-				monstre[j].onde();
+				//monstre[j].onde();
+				
+				//SCORE
+				score += monstre[j].bonus;
+				document.getElementById("spanScore").innerHTML = ' Score: ' + score;
 			}
 
 			if(monstre[j].pdv <=0) {
 				map.deleteMonstre(monstre[j].ide);
+
+				//ARGENT
+				argent+= monstre[j].argent;
+				document.getElementById("spanGold").innerHTML = ' Argent: ' + argent;
+				achatPossible();
 
 				var bfr = [];
 			   	for(var j = 0; j < monstre.length; j++) {
@@ -348,6 +393,8 @@ window.onload = function() {
 
 	}, 40);
 	
+	document.getElementById("spanGold").innerHTML = ' Argent: ' + argent;
+
 	// Gestion du clavier
 	window.onkeydown = function(event) {
 		var e = event || window.event;

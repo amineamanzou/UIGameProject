@@ -19,10 +19,13 @@ function Monster(id ,url, x, y, direction) {
 	this.image.src = "sprites/" + url;
 	this.etatAnimation = -1;
 
+	//Ces informations devront être des parametres plus tard ...
 	this.pdv = 30;
 	this.totalPdv = this.pdv ;
 	this.degat = 5;
 	this.portee = 2;
+	this.bonus = 350;
+	this.argent = 250;
 }
 
 Monster.prototype.dessinerMonstre = function(context) {

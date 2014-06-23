@@ -65,12 +65,15 @@
 <body>
 
   <?php require_once 'include/menu.php'; ?>
+  <div class="score" id="score"><span id="spanScore" class="imgSound glyphicon glyphicon-tower"> Score: 0</span></div>
+  <div class="gold" id="gold"><span id="spanGold" class="imgSound glyphicon glyphicon-euro"> Argent: 0</span></div>
+
   <div class="menuTour">
-    <ul id="listeMenu">
-      <li><img src="./img/menuMob1.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(1, this);"></li>
-      <li><img src="./img/menuMob2.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(2, this);"></li>
-      <li><img src="./img/menuMob3.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(3, this);"></li>
-      <li><img src="./img/menuMob4.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(4, this);"></li>
+    <ul id="listeMenu" style="color:white; font-weight:bold;">
+      <li id="obj1"><img src="./img/menuMob1.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(1, this, 500);">500</li>
+      <li id="obj2"><img src="./img/menuMob2.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(2, this, 700);">700</li>
+      <li id="obj3"><img src="./img/menuMob3.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(3, this, 850);">850</li>
+      <li id="obj4"><img src="./img/menuMob4.png" width="50" height="80" onmouseover="selection(this);" onmouseout="deselection(this);" onclick="choixTour(4, this, 1100);">1100</li>
     </ul>
   </div>
   <canvas id="canvas" width="600" height="600">Votre navigateur ne supporte pas le conteneur canvas d'HTML 5.</canvas>

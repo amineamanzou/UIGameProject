@@ -255,6 +255,36 @@
 	cursor: pointer;
 }
 
+.score {
+	position: fixed;
+	top: 23px;
+	left: 1250px;
+	z-index: 1000;
+	display: block;
+	color : black;
+
+	background-color: white;
+	padding-right: 24px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.gold {
+	position: fixed;
+	top: 60px;
+	left: 1250px;
+	z-index: 1000;
+	display: block;
+	color : black;
+
+	background-color: white;
+	padding-right: 20px;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
 .menuTour {
 	position: relative;
 	background-image: url(../img/menu.png);
