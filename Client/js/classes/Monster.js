@@ -84,6 +84,34 @@ Monster.prototype.dessinerMonstre = function(context) {
    	context.fillRect(x, y, pdv, tailleY);
 }
 
+
+Monster.prototype.onde = function() {
+	canvas = document.getElementById('canvas');
+	ctx = canvas.getContext('2d');
+
+   	var x = (this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2);
+	var y = (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3);
+
+	var imageObj = new Image();
+    imageObj.onload = function() {
+        ctx.drawImage(imageObj, x, y);
+    };
+
+    imageObj.src = './img/ondes_final.png';
+
+
+/*
+	ctx.fillStyle = "orange";
+   	var pdv = (this.pdv/this.totalPdv) * tailleX;
+   	var x = (this.x * TAILLE_TILE) - (this.largeur / 2) + (TAILLE_TILE/2) + 6;
+	var y = (this.y * TAILLE_TILE) - this.hauteur + (TAILLE_TILE*2/3) - 10;
+   	ctx.fillRect(x, y, pdv, tailleY);
+*/
+
+
+}
+
+
 Monster.prototype.getCoordonneesAdjacentes = function(direction)  {
 	var coord = {'x' : this.x, 'y' : this.y};
 	switch(direction) {

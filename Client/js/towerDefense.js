@@ -2,14 +2,18 @@
 /* OPTION DE LA CARTE (JSON) */
 /* ------------------------- */
 var musicName = "./sound/MusicHalo.mp3";
-var mapName = "premiere";
+var mapName = "troisieme";
 var gold = 1000;
 
 var mobName = new Array("personnage","test");
 var mobNb= new Array(1,2);
 var mob = new Array(mobName,mobNb);
-var timeInterval=3000;
+var timeInterval = 3000;
+ 
+var argent = 1000;
 /* ------------------------- */
+
+var score = 0;
 	
 var canvas;
 var ctx;
@@ -245,6 +249,7 @@ function attaque() {
 			var portee = distance(monstre[j], tourPos[i]);
 			if(portee <= monstre[j].portee) {
 				monstre[j].pdv -= tourPos[i].degat;
+				monstre[j].onde();
 			}
 
 			if(monstre[j].pdv <=0) {
